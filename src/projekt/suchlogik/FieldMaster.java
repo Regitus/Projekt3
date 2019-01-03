@@ -1,5 +1,7 @@
 package projekt.suchlogik;
 
+import projekt.hamster.Territorium;
+
 /*class*/class FieldMaster 
 {  
     private Field[][] fields;
@@ -7,14 +9,17 @@ package projekt.suchlogik;
     private int amountRows;
     private int amountColumns;
     
+    private Territorium territorium;
+    
     /**
      * Das zweidimensionale Feld-Array wird intern befüllt.
      */
     public FieldMaster() 
     {
     	// Es wird vermieden, dass die Anfrage (Anzahl der Reihen oder Spalten) auf der Benutzeroberfläche ständig angezeigt wird. 
-    	amountRows = Territorium.getAnzahlReihen();
-    	amountColumns = Territorium.getAnzahlSpalten();
+    	territorium = new Territorium();
+    	amountRows = territorium.getAnzahlReihen();
+    	amountColumns = territorium.getAnzahlSpalten();
     		
     	fillArray();
     }
@@ -68,11 +73,11 @@ package projekt.suchlogik;
 		{
 			for (int column = 0; column < amountColumns; column++)
 			{
-				if(Territorium.mauerDa(row, column))
+				if(territorium.mauerDa(row, column))
 				{
 					fields[row][column] = Field.DISCOVERED;
 				}
-				else if (Territorium.getAnzahlKoerner(row, column) > 0)
+				else if (territorium.getAnzahlKoerner(row, column) > 0)
 				{
 					fields[row][column] = Field.CORN;
 				}

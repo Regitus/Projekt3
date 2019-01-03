@@ -50,6 +50,6 @@ package projekt.hamster;
 	public int getSpalte()
 	{
 		//Gebe Spalte zurück
-		return 3
+		return 3;
 	}
 }
