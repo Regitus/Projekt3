@@ -1,19 +1,20 @@
 package projekt.suchlogik;
 
-import projekt.hamster.SearchHamster;
+import projekt.hamster.Hamster;
+import projekt.hamster.Territorium;
 
-/*class*/class DepthFirstSearch
+/*class*/public class DepthFirstSearch
 {
 	private FieldMaster fieldMaster;
-	private SearchHamster hamster;
+	private Hamster hamster;
 	
 	/**
 	 * Initialisert die für die Tiefesuche relevanten Attribute. 
-	 * @param Der SearchHamster, der nach dem Start die Tiefesuche nachläuft.
+	 * @param Der Hamster, der nach dem Start die Tiefesuche nachläuft.
 	 */
-    public DepthFirstSearch(SearchHamster hamster)
+    public DepthFirstSearch(Hamster hamster, Territorium territorium)
     {
-    	this.fieldMaster = new FieldMaster();
+    	this.fieldMaster = new FieldMaster(territorium);
     	this.hamster = hamster;
     }
     
@@ -44,13 +45,13 @@ import projekt.hamster.SearchHamster;
     	fieldMaster.visiting(row, column); 
     	
     	// Alle vier Richtungen werden untersucht.
-		for(int direction = SearchHamster.norden; direction <= SearchHamster.westen; direction++)
+		for(int direction = Hamster.norden; direction <= Hamster.westen; direction++)
 		{
 			// Überprüft, ob der Hamster das Nachbarfeld noch nicht untersucht hat.
 			// Außerdem muss das Nachbarfeld im Territorium liegen und es darf sich keine Mauer befinden.
 			if(canDiscoverField(row, column, direction))
 			{
-				hamster.turnToDirection(direction);
+				hamster.dreheBisAusrichtung(direction);
 				hamster.vor();
 				if(searchCorn(direction))
 				{
@@ -73,7 +74,7 @@ import projekt.hamster.SearchHamster;
     {
         if(directionFrom >= 0)
     	{
-    		hamster.turnToDirection((directionFrom + 2) % 4);
+    		hamster.dreheBisAusrichtung((directionFrom + 2) % 4);
     		hamster.vor();
     	}
     }
@@ -86,16 +87,16 @@ import projekt.hamster.SearchHamster;
 	{
 		switch(direction)
 		{
-			case SearchHamster.norden:
+			case Hamster.norden:
 				return fieldMaster.canBeDiscovered(row - 1, column);
 	
-			case SearchHamster.osten:
+			case Hamster.osten:
 				return fieldMaster.canBeDiscovered(row, column + 1);
 				
-			case SearchHamster.sueden:
+			case Hamster.sueden:
 				return fieldMaster.canBeDiscovered(row + 1, column);
 				
-			case SearchHamster.westen:
+			case Hamster.westen:
 				return fieldMaster.canBeDiscovered(row, column - 1);				
 		}
 		

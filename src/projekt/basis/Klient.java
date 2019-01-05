@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import projekt.nachrichten.BildSender;
-import projekt.nachrichten.Sender;
-import projekt.nachrichten.TextSender;
-import projekt.user.*;
+import projekt.hamster.Hamster;
+import projekt.hamster.Territorium;
+import projekt.nachrichten.TextServerVerbindung;
+import projekt.user.AktuellerBenutzer;
+import projekt.suchlogik.DepthFirstSearch;
 
 public class Klient
 {
 
 	private AktuellerBenutzer benutzer; // = new AktuellerBenutzer();
-	TextSender textSenden;
+	TextServerVerbindung textSenden;
 
 	/**
 	 * Erstmaliges Anmelden und Instanz der Nutzerklasse definieren
@@ -39,7 +40,7 @@ public class Klient
 		benutzer = new AktuellerBenutzer(tmpWert, inAnmelden.nextLine());
 
 		// Neu Anmelden in den Sender Klassen
-		textSenden = new TextSender(benutzer.getBenutzerName(), benutzer.getPasswort());
+		textSenden = new TextServerVerbindung(benutzer.getBenutzerName(), benutzer.getPasswort());
 		
 		// Neue Nutzerliste für den User holen
 
@@ -55,9 +56,7 @@ public class Klient
 		boolean run = true;
 		do
 		{
-			System.out.println("\n1. Neue Anmeldedaten" + "\n2. Die letzten 100 Nachrichten"
-					+ "\n3. Neuer als eine bestimmte ID ausgeben" + "\n4. Senden Menü" + "\n5. Gruppenverwaltung"
-					+ "\n6. Alle Nutzer ausgeben" + "\n99 Beenden");
+			System.out.println("\n1. Neue Anmeldedaten" + "\n2. Programm ausführen" + "\n99. Beenden");
 			switch (inMain.nextInt())
 			{
 			case 1: // Neues anmelden
@@ -65,11 +64,7 @@ public class Klient
 				break;
 
 			case 2: // Gibt die letzten 100 Nachrichten aus
-				ausgebenNeuesteNachrichten();
-				break;
-
-			case 3: // Neuer als eine bestimmte ID
-				ausgebenNeuerAlsIDNachrichten();
+				starteHamsterProgramm();
 				break;
 
 			case 99: // Programm beenden
@@ -84,57 +79,71 @@ public class Klient
 		} while (run);
 	}
 
-	/**
-	 * Startmethode um die bis zu 100 letzten Nachrichten auszugeben
-	 */
-	private void ausgebenNeuesteNachrichten()
-	{
-		String[] tmpString;
-
-		// Holen der Nachrichten
-		tmpString = textSenden.getNachrichten();
-		ausgebenStringArray(tmpString);
+	private void starteHamsterProgramm() {
+		Hamster hamster = new Hamster(benutzer);
+		Territorium territorium = new Territorium(hamster.init());
+		DepthFirstSearch tiefensuche = new DepthFirstSearch(hamster, territorium);
+		tiefensuche.searchCorn();
 	}
 
-	/**
-	 * Gibt Nachrichten aus die neuer sind als eine eingegebene ID
-	 */
-	private void ausgebenNeuerAlsIDNachrichten()
-	{
-
-		String[] tmpString;
-		@SuppressWarnings("resource")
-		Scanner inAlsID = new Scanner(System.in);
-
-		System.out.println("Bitte geben sie eine Nachrichten ID an. Von dieser ID an, werden alle neueren angezeigt.");
-		try
-		{
-			// Nachrichten neuer als ID holen
-			tmpString = textSenden.getIDNachrichten(inAlsID.nextLong());
-			ausgebenStringArray(tmpString);
-		} catch (InputMismatchException e)
-		{
-			// TODO: handle exception
-			System.out.println("Falsche Eingabe, Ausgabe abgebrochen");
-		}
-	}
-
-	/**
-	 * Methode zum allgemeinen Ausgeben eines String Array auf der Konsole
-	 * 
-	 * @param arString; Array eines String übergeben und wird auf der Konsole
-	 *        übergeben
-	 */
-	private void ausgebenStringArray(String[] arString)
-	{
-		if (arString != null)
-		{
-			for (String text : arString)
-			{
-				System.out.println(text);
-			}
-		}
-	}
+	
+	
+	
+	
+	
+	
+//	/**
+//	 * Startmethode um die bis zu 100 letzten Nachrichten auszugeben
+//	 */
+//	private void ausgebenNeuesteNachrichten()
+//	{
+//		String[] tmpString;
+//
+//		// Holen der Nachrichten
+//		tmpString = textSenden.getNachrichten();
+//		ausgebenStringArray(tmpString);
+//	}
+//
+//	/**
+//	 * Gibt Nachrichten aus die neuer sind als eine eingegebene ID
+//	 */
+//	private void ausgebenNeuerAlsIDNachrichten()
+//	{
+//
+//		String[] tmpString;
+//		@SuppressWarnings("resource")
+//		Scanner inAlsID = new Scanner(System.in);
+//
+//		System.out.println("Bitte geben sie eine Nachrichten ID an. Von dieser ID an, werden alle neueren angezeigt.");
+//		try
+//		{
+//			// Nachrichten neuer als ID holen
+//			tmpString = textSenden.getIDNachrichten(inAlsID.nextLong());
+//			ausgebenStringArray(tmpString);
+//		} catch (InputMismatchException e)
+//		{
+//			// TODO: handle exception
+//			System.out.println("Falsche Eingabe, Ausgabe abgebrochen");
+//		}
+//	}
+//
+//	/**
+//	 * Methode zum allgemeinen Ausgeben eines String Array auf der Konsole
+//	 * 
+//	 * @param arString; Array eines String übergeben und wird auf der Konsole
+//	 *        übergeben
+//	 */
+//	private void ausgebenStringArray(String[] arString)
+//	{
+//		if (arString != null)
+//		{
+//			for (String text : arString)
+//			{
+//				System.out.println(text);
+//			}
+//		}
+//	}
+}
 //	/* SENDEN MENÜ */
 //
 //	/**
@@ -196,7 +205,7 @@ public class Klient
 //
 //	/**
 //	 * Einfache Textnachricht versenden
-//	 * @param sender; Instant von TextSender oder BildSender an die Methode übergeben
+//	 * @param sender; Instant von TextServerVerbindung oder BildSender an die Methode übergeben
 //	 */
 //	private void versendeNachricht(Sender sender)
 //	{
@@ -226,7 +235,7 @@ public class Klient
 //
 //	/**
 //	 * Nachricht an Gruppe versenden.
-//	 * @param sender; Instant von TextSender oder BildSender an die Methode übergeben
+//	 * @param sender; Instant von TextServerVerbindung oder BildSender an die Methode übergeben
 //	 */
 //	private void versendeNachrichtAnGruppe(Sender sender)
 //	{

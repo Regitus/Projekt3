@@ -14,10 +14,10 @@ import projekt.hamster.Territorium;
     /**
      * Das zweidimensionale Feld-Array wird intern befüllt.
      */
-    public FieldMaster() 
+    public FieldMaster(Territorium territorium) 
     {
     	// Es wird vermieden, dass die Anfrage (Anzahl der Reihen oder Spalten) auf der Benutzeroberfläche ständig angezeigt wird. 
-    	territorium = new Territorium();
+    	this.territorium = territorium;
     	amountRows = territorium.getAnzahlReihen();
     	amountColumns = territorium.getAnzahlSpalten();
     		

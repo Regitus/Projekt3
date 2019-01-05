@@ -2,14 +2,14 @@ package projekt.nachrichten;
 
 import java.io.IOException;
 
-public class TextSender extends Sender
+public class TextServerVerbindung extends Sender
 {
 	/**
 	 * Anmeldedaten abspeichern
 	 * @param benutzerName Benutzername
 	 * @param passwort	Passwort
 	 */
-    public TextSender(String benutzerName, String passwort)
+    public TextServerVerbindung(String benutzerName, String passwort)
     {
         super(benutzerName, passwort);
     }
