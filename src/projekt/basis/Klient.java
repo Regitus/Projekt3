@@ -63,7 +63,7 @@ public class Klient
 				anmelden();
 				break;
 
-			case 2: // Gibt die letzten 100 Nachrichten aus
+			case 2: // Startet das Hamsterprogramm
 				starteHamsterProgramm();
 				break;
 
@@ -80,10 +80,10 @@ public class Klient
 	}
 
 	private void starteHamsterProgramm() {
-		Hamster hamster = new Hamster(benutzer);
-		Territorium territorium = new Territorium(hamster.init());
-		DepthFirstSearch tiefensuche = new DepthFirstSearch(hamster, territorium);
-		tiefensuche.searchCorn();
+		Hamster hamster = new Hamster(benutzer);	//Hamster Objekt erstellen
+		Territorium territorium = new Territorium(hamster.init()); //Territorium auslesen und ermitteln, dabei den Hamster mit initialisieren auf dem Feld
+		DepthFirstSearch tiefensuche = new DepthFirstSearch(hamster, territorium);	//Hamsterprogramm erstellen
+		tiefensuche.searchCorn(); //Programm starten
 	}
 
 	

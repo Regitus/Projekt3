@@ -9,8 +9,9 @@ import projekt.hamster.Territorium;
 	private Hamster hamster;
 	
 	/**
-	 * Initialisert die für die Tiefesuche relevanten Attribute. 
-	 * @param Der Hamster, der nach dem Start die Tiefesuche nachläuft.
+	 * Initialisiert diese Klasse, benötigt einen Hamster und ein Territorium
+	 * @param hamster Der Hamster zum Steuern
+	 * @param territorium Das Territorium Feld der Klasse Territorium
 	 */
     public DepthFirstSearch(Hamster hamster, Territorium territorium)
     {

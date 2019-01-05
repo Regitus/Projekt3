@@ -16,15 +16,8 @@ import projekt.user.AktuellerBenutzer;
 	TextServerVerbindung textNachrichten;
 
 	/**
-	 * Die Reihe und die Spalte des Startfeldes, sowie die Richtung muss übergeben
-	 * werden. Die Anzahl der Körner im Mund wird standardisiert auf null gesetzt.
-	 * 
-	 * @param row       Die Reihe des Feldes, auf dem sich der Hamster nach der
-	 *                  Initialisierung befindet.
-	 * @param column    Die Spalte des Feldes, auf dem sich der Hamster nach der
-	 *                  Initialisierung befindet.
-	 * @param direction Die Richtung, in die der Hamsta nach der Initialisierung
-	 *                  blickt.
+	 * Objekt der klasse TextServerVerbindung initialisieren
+	 * @param anmeldeDaten Klasse AktuellerBenutzer mit gefüllten Benutzer + Passwort
 	 */
 	public Hamster(AktuellerBenutzer anmeldeDaten)
 	{
@@ -37,7 +30,7 @@ import projekt.user.AktuellerBenutzer;
 	/**
 	 * Der Hamster dreht sich in die als Parameter spezifizierte Richtung.
 	 * 
-	 * @param direction Die Richtung, wo sich der Hamster beim Laufen hin bewegt.
+	 * @param blick Die Richtung, wo sich der Hamster beim Laufen hin bewegt.
 	 */
 	public void dreheBisAusrichtung(int blick)
 	{
@@ -86,7 +79,10 @@ import projekt.user.AktuellerBenutzer;
 		return "Es konnte nicht initialisiert werden!";
 
 	}
-
+	
+	/**
+	 * Eines nach vorne bewegen
+	 */
 	public void vor()
 	{
 		// Schreibe vor
@@ -119,25 +115,39 @@ import projekt.user.AktuellerBenutzer;
 			break;
 		}
 	}
-
+	
+	/**
+	 * Gibt die Reihe zurück
+	 * @return Reihe als Int-Wert
+	 */
 	public int getReihe()
 	{
 		// Gebe Reihe zurück
 		return reihe;
 	}
-
+	
+	/**
+	 * Gibt die Spalte zurück
+	 * @return Spalte als Int-Wert
+	 */
 	public int getSpalte()
 	{
 		// Gebe Spalte zurück
 		return spalte;
 	}
-
+	
+	/**
+	 * Dreht den Hamster nach links
+	 */
 	public void linksUm()
 	{
 		textNachrichten.senden("hamster18ws", "linksUm");
 		ausrichtung = (ausrichtung + 3) % 4;
 	}
-
+	
+	/**
+	 * nimmt ein Korn auf, wenn vorhanden
+	 */
 	public void nimm()
 	{
 		textNachrichten.senden("hamster18ws", "nimm");

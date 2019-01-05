@@ -5,6 +5,10 @@ public class Territorium {
 	private int anzahlReihe, anzahlSpalte;
 	private String[][] feld;
 	
+	/**
+	 * 
+	 * @param feldString String mit der Textrückgabe vom Hamster nach dem init Befehl
+	 */
 	public Territorium(String feldString)
 	{
 		String[] split = feldString.split(" ");
@@ -22,16 +26,29 @@ public class Territorium {
 		}
 	}
 	
+	/**
+	 * Anzahl der Gesamtreihen
+	 * @return Anzahl der Reihen
+	 */
 	public int getAnzahlReihen()
 	{
 		return anzahlReihe;
 	}
-	
+	/**
+	 * Anzahl der Gesamtspalten
+	 * @return Anzahl der Spalten
+	 */
 	public int getAnzahlSpalten()
 	{
 		return anzahlSpalte;
 	}
 	
+	/**
+	 * Prüft ob eine Mauer an der Koordinate ist. True wenn ja.
+	 * @param reihe Int Wert der Reihe
+	 * @param spalte Int Wert der Spalte
+	 * @return Boolean; true bei ja, false bei nein
+	 */
 	public boolean mauerDa(int reihe, int spalte)
 	{
 		if (feld[reihe][spalte].equals("x"))
@@ -41,6 +58,12 @@ public class Territorium {
 		return false;
 	}
 	
+	/**
+	 * Gibt die Anzahl der Körner auf der koordinate wieder
+	 * @param reihe Int Wert der Reihe
+	 * @param spalte Int Wert der Spalte
+	 * @return int wert mit Korn
+	 */
 	public int getAnzahlKoerner(int reihe, int spalte)
 	{
 		if (feld[reihe][spalte].equals("!"))
