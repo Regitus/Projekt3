@@ -44,7 +44,7 @@ public class DepthFirstSearch
     	fieldMaster.visiting(row, column); 
     	
     	// Alle vier Richtungen werden untersucht.
-		for(int direction = SearchHamster.norden; direction <= SearchHamster.westen; direction++)
+		for(int direction = SearchHamster.NORDEN; direction <= SearchHamster.WESTEN; direction++)
 		{
 			// �berpr�ft, ob der Hamster das Nachbarfeld noch nicht untersucht hat.
 			// Au�erdem muss das Nachbarfeld im Territorium liegen und es darf sich keine Mauer befinden.
@@ -86,16 +86,16 @@ public class DepthFirstSearch
 	{
 		switch(direction)
 		{
-			case SearchHamster.norden:
+			case SearchHamster.NORDEN:
 				return fieldMaster.canBeDiscovered(row - 1, column);
 	
-			case SearchHamster.osten:
+			case SearchHamster.OSTEN:
 				return fieldMaster.canBeDiscovered(row, column + 1);
 				
-			case SearchHamster.sueden:
+			case SearchHamster.SUEDEN:
 				return fieldMaster.canBeDiscovered(row + 1, column);
 				
-			case SearchHamster.westen:
+			case SearchHamster.WESTEN:
 				return fieldMaster.canBeDiscovered(row, column - 1);				
 		}
 		

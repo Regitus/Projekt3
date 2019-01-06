@@ -1,15 +1,18 @@
 package projekt.hamster;
 
-import projekt.nachrichten.TextSender;
-
-public class Territorium {
+public class Territorium
+{
 
 	private String[][] felder;
 
-	public void initialisieren(TextSender sender)
+	public Territorium(String territorium)
 	{
-		String s = getTerritorium(sender);
-		String[] elemente = s.split(" ");
+		initialisieren(territorium);
+	}
+
+	private void initialisieren(String territorium)
+	{
+		String[] elemente = territorium.split(" ");
 
 		int anzahlSpalten = Integer.parseInt(elemente[0]);
 		int anzahlReihen = Integer.parseInt(elemente[1]);
@@ -35,10 +38,5 @@ public class Territorium {
 	public int getAnzahlKoerner(int reihe, int spalte)
 	{
 		return (felder[reihe][spalte] == "!") ? 1 : 0;
-	}
-
-	private String getTerritorium(TextSender sender)
-	{
-		return "6 3 0 0 0 x 0 ! 0 x 0 x 0 x 0 x 0 0 0 x";
 	}
 }

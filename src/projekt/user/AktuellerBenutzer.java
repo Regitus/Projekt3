@@ -2,14 +2,14 @@ package projekt.user;
 
 /**
  * Anmeldedaten des Benutzers werden hier gespeichert.
- * !ACHTUNG! Passwort im Klartext intern temporär gesichert
+ * !ACHTUNG! Passwort im Klartext intern temporï¿½r gesichert
  * @author David, Rene, Tim
  *
  */
 public class AktuellerBenutzer {
 	
-	private String benutzerName = "";
-	private String passwort = "";
+	private String benutzerName;
+	private String passwort;
 	
 	public AktuellerBenutzer(String name, String pass)
 	{
@@ -18,7 +18,7 @@ public class AktuellerBenutzer {
 	}
 	
 	/**
-	 * @return Gibt den Benutzernamen zurück
+	 * @return Gibt den Benutzernamen zurï¿½ck
 	 */
 	public String getBenutzerName() {
 		return benutzerName;

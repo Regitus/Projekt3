@@ -11,8 +11,7 @@ public class Main
 
     private static void testTerritorium()
     {
-        Territorium t = new Territorium();
-        t.initialisieren(null);
+        Territorium t = new Territorium("6 3 0 0 0 x 0 ! 0 x 0 x 0 x 0 x 0 0 0 x");
 
         String s = "sdf";
     }
