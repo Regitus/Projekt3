@@ -1,4 +1,4 @@
-package projekt.suchlogik;
+package projekt.searchlogic;
 
 import projekt.hamster.Hamster;
 import projekt.hamster.Territorium;
@@ -35,8 +35,8 @@ import projekt.hamster.Territorium;
      */
     private boolean searchCorn(int directionFrom)
     {
-    	int row = hamster.getReihe();
-    	int column = hamster.getSpalte();
+    	int row = hamster.getRow();
+    	int column = hamster.getColumn();
     	   	
     	if(fieldMaster.isCornInField(row, column))
     	{
@@ -52,7 +52,7 @@ import projekt.hamster.Territorium;
 			// Außerdem muss das Nachbarfeld im Territorium liegen und es darf sich keine Mauer befinden.
 			if(canDiscoverField(row, column, direction))
 			{
-				hamster.dreheBisAusrichtung(direction);
+				hamster.turnToDirection(direction);
 				hamster.vor();
 				if(searchCorn(direction))
 				{
@@ -75,7 +75,7 @@ import projekt.hamster.Territorium;
     {
         if(directionFrom >= 0)
     	{
-    		hamster.dreheBisAusrichtung((directionFrom + 2) % 4);
+    		hamster.turnToDirection((directionFrom + 2) % 4);
     		hamster.vor();
     	}
     }

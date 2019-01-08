@@ -6,22 +6,22 @@ package projekt.user;
  * @author David, Rene, Tim
  *
  */
-public class AktuellerBenutzer {
+public class CurrentUser {
 	
-	private String benutzerName = "";
-	private String passwort = "";
+	private String userName = "";
+	private String password = "";
 	
-	public AktuellerBenutzer(String name, String pass)
+	public CurrentUser(String name, String pass)
 	{
-		benutzerName = name;
-		passwort = pass;
+		userName = name;
+		password = pass;
 	}
 	
 	/**
 	 * @return Gibt den Benutzernamen zurück
 	 */
-	public String getBenutzerName() {
-		return benutzerName;
+	public String getUserName() {
+		return userName;
 	}
 	
 	
@@ -30,7 +30,7 @@ public class AktuellerBenutzer {
 	 * 
 	 * @return Speichert das Passwort
 	 */
-	public String getPasswort() {
-		return passwort;
+	public String getPassword() {
+		return password;
 	}
 }

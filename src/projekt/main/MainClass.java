@@ -1,13 +1,13 @@
 package projekt.main;
 
-import projekt.basis.Klient;
+import project.basis.Client;
 
-public class MainKlasse {
+public class MainClass {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Klient klient = new Klient();
-		klient.programm();
+		Client client = new Client();
+		client.program();
 	}
 
 }

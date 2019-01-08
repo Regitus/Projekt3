@@ -1,23 +1,23 @@
-package projekt.nachrichten;
+package projekt.messages;
 
 import java.io.IOException;
 
-public class TextServerVerbindung extends Sender
+public class TextMessageHandler extends MessageHandler
 {
 	/**
 	 * Anmeldedaten abspeichern
-	 * @param benutzerName Benutzername
-	 * @param passwort	Passwort
+	 * @param userName Benutzername
+	 * @param password	Passwort
 	 */
-    public TextServerVerbindung(String benutzerName, String passwort)
+    public TextMessageHandler(String userName, String password)
     {
-        super(benutzerName, passwort);
+        super(userName, password);
     }
 
     @Override
-    protected boolean sendenZuServer(String empfaenger, String daten) throws IOException, IllegalArgumentException
+    protected boolean sendToServer(String receiver, String data) throws IOException, IllegalArgumentException
     {
-        server.sendTextMessage(benutzerName, passwort, empfaenger, daten);
+        server.sendTextMessage(userName, password, receiver, data);
         return true;
     }
     
@@ -27,11 +27,11 @@ public class TextServerVerbindung extends Sender
 	 * @return String[]; String Array mit bis zu 100 Einträgen in der ausgehende und
 	 *         eingehene Nachrichten des User gelistet sind
 	 */
-	public String[] getNachrichten()
+	public String[] getMessages()
 	{
 		try
 		{
-			return server.getMostRecentMessages(benutzerName, passwort);
+			return server.getMostRecentMessages(userName, password);
 
 		} catch (IllegalArgumentException | IOException e)
 		{
@@ -45,11 +45,11 @@ public class TextServerVerbindung extends Sender
 	 * @param id Die eingegebene ID von der aus alle Nachrichten angezeigt werden die neuer sind
 	 * @return String Array mit den Nachrichten
 	 */
-	public String[] getIDNachrichten(long id)
+	public String[] getIDMessages(long id)
 	{
 		try
 		{
-			return server.getMessages(benutzerName, passwort, id);
+			return server.getMessages(userName, password, id);
 		}
 		catch (IllegalArgumentException | IOException e)
 		{

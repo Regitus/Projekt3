@@ -1,4 +1,4 @@
-package projekt.suchlogik;
+package projekt.searchlogic;
 
 import projekt.hamster.Territorium;
 
@@ -18,8 +18,8 @@ import projekt.hamster.Territorium;
     {
     	// Es wird vermieden, dass die Anfrage (Anzahl der Reihen oder Spalten) auf der Benutzeroberfläche ständig angezeigt wird. 
     	this.territorium = territorium;
-    	amountRows = territorium.getAnzahlReihen();
-    	amountColumns = territorium.getAnzahlSpalten();
+    	amountRows = territorium.getNumberOfRows();
+    	amountColumns = territorium.getNumberOfColumns();
     		
     	fillArray();
     }
@@ -73,11 +73,11 @@ import projekt.hamster.Territorium;
 		{
 			for (int column = 0; column < amountColumns; column++)
 			{
-				if(territorium.mauerDa(row, column))
+				if(territorium.checkWall(row, column))
 				{
 					fields[row][column] = Field.DISCOVERED;
 				}
-				else if (territorium.getAnzahlKoerner(row, column) > 0)
+				else if (territorium.getNumberOfCorns(row, column) > 0)
 				{
 					fields[row][column] = Field.CORN;
 				}

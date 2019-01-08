@@ -1,4 +1,4 @@
-package projekt.suchlogik;
+package projekt.searchlogic;
 
 /*class*/enum Field 
 

@@ -1,43 +1,39 @@
 package projekt.hamster;
 
-import projekt.nachrichten.TextServerVerbindung;
-import projekt.user.AktuellerBenutzer;
+import projekt.messages.TextMessageHandler;
+import projekt.user.CurrentUser;
 
 /*class*/public class Hamster
 {
 
-	int ausrichtung = 1;
+	private int currentDirection = 1;
 	public static final int norden = 0;
 	public static final int osten = 1;
 	public static final int sueden = 2;
 	public static final int westen = 3;
-	int reihe, spalte, maxReihe, maxSpalte;
+	private int row, column, maxRow, maxColumn;
 
-	TextServerVerbindung textNachrichten;
+	TextMessageHandler textMessages;
 
 	/**
-	 * Objekt der klasse TextServerVerbindung initialisieren
-	 * @param anmeldeDaten Klasse AktuellerBenutzer mit gefüllten Benutzer + Passwort
+	 * Objekt der klasse TextMessageHandler initialisieren
+	 * @param loginData Klasse CurrentUser mit gefüllten Benutzer + Passwort
 	 */
-	public Hamster(AktuellerBenutzer anmeldeDaten)
+	public Hamster(CurrentUser loginData)
 	{
-		// super(row, colum, direction, 0);
-		// Hier Init befehl
-		textNachrichten = new TextServerVerbindung(anmeldeDaten.getBenutzerName(), anmeldeDaten.getPasswort());
-
+		textMessages = new TextMessageHandler(loginData.getUserName(), loginData.getPassword());
 	}
 
 	/**
 	 * Der Hamster dreht sich in die als Parameter spezifizierte Richtung.
 	 * 
-	 * @param blick Die Richtung, wo sich der Hamster beim Laufen hin bewegt.
+	 * @param direction Die Richtung, wo sich der Hamster beim Laufen hin bewegt.
 	 */
-	public void dreheBisAusrichtung(int blick)
+	public void turnToDirection(int direction)
 	{
-		while (blick != ausrichtung)
+		while (direction != currentDirection)
 		{
-			// Schreibe turnLeft();
-			linksUm();
+			turnLeft();
 		}
 	}
 
@@ -50,25 +46,25 @@ import projekt.user.AktuellerBenutzer;
 	 */
 	public String init()
 	{
-		reihe = spalte = 0;
+		row = column = 0;
 		
-		String[] nachrichten, getrennteNachricht;
-		textNachrichten.senden("hamster18ws", "init");
+		String[] messages, splittedMessages;
+		textMessages.send("hamster18ws", "init");
 		try
 		{
 			// 5 Versuche um die Eingangsnachricht zu finden
 			for (int i = 0; i < 5; i++)
 			{
 				Thread.sleep(3000);
-				nachrichten = textNachrichten.getNachrichten();
-				getrennteNachricht = nachrichten[nachrichten.length-1].split("\\|");
-				if (getrennteNachricht[2].equals("in")&& getrennteNachricht[3].equals("hamster18ws"))
+				messages = textMessages.getMessages();
+				splittedMessages = messages[messages.length-1].split("\\|");
+				if (splittedMessages[2].equals("in")&& splittedMessages[3].equals("hamster18ws"))
 				{
 					//Variabel nachrichten missbrauchen um Feldgröße zu bekommen
-					nachrichten = getrennteNachricht[5].split(" ");
-					maxReihe = Integer.parseInt(nachrichten[2]);
-					maxSpalte = Integer.parseInt(nachrichten[1]);;
-					return getrennteNachricht[5];
+					messages = splittedMessages[5].split(" ");
+					maxRow = Integer.parseInt(messages[2]);
+					maxColumn = Integer.parseInt(messages[1]);;
+					return splittedMessages[5];
 				}
 			}
 
@@ -85,32 +81,31 @@ import projekt.user.AktuellerBenutzer;
 	 */
 	public void vor()
 	{
-		// Schreibe vor
-		textNachrichten.senden("hamster18ws", "vor");
-		switch (ausrichtung)
+		textMessages.send("hamster18ws", "vor");
+		switch (currentDirection)
 		{
 		case Hamster.norden:
-			if (reihe != 0)
+			if (row != 0)
 			{
-				reihe--;
+				row--;
 			}
 			break;
 		case Hamster.osten:
-			if (spalte < maxSpalte)
+			if (column < maxColumn)
 			{
-				spalte++;
+				column++;
 			}
 			break;
 		case Hamster.sueden:
-			if (reihe < maxReihe)
+			if (row < maxRow)
 			{
-				reihe++;
+				row++;
 			}
 			break;
 		case Hamster.westen:
-			if (spalte != 0)
+			if (column != 0)
 			{
-				spalte--;
+				column--;
 			}
 			break;
 		}
@@ -120,36 +115,36 @@ import projekt.user.AktuellerBenutzer;
 	 * Gibt die Reihe zurück
 	 * @return Reihe als Int-Wert
 	 */
-	public int getReihe()
+	public int getRow()
 	{
 		// Gebe Reihe zurück
-		return reihe;
+		return row;
 	}
 	
 	/**
 	 * Gibt die Spalte zurück
 	 * @return Spalte als Int-Wert
 	 */
-	public int getSpalte()
+	public int getColumn()
 	{
 		// Gebe Spalte zurück
-		return spalte;
+		return column;
 	}
 	
 	/**
 	 * Dreht den Hamster nach links
 	 */
-	public void linksUm()
+	public void turnLeft()
 	{
-		textNachrichten.senden("hamster18ws", "linksUm");
-		ausrichtung = (ausrichtung + 3) % 4;
+		textMessages.send("hamster18ws", "linksUm");
+		currentDirection = (currentDirection + 3) % 4;
 	}
 	
 	/**
 	 * nimmt ein Korn auf, wenn vorhanden
 	 */
-	public void nimm()
+	public void take()
 	{
-		textNachrichten.senden("hamster18ws", "nimm");
+		textMessages.send("hamster18ws", "nimm");
 	}	
 }
