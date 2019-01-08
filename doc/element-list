@@ -1,7 +1,6 @@
-projekt.basis
+project.basis
 projekt.hamster
 projekt.main
-projekt.nachrichten
-projekt.suchlogik
+projekt.messages
+projekt.searchlogic
 projekt.user
-testding
