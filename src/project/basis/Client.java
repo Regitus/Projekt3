@@ -2,24 +2,21 @@ package project.basis;
 
 import java.util.Scanner;
 
-import projekt.hamster.Hamster;
-import projekt.hamster.Territory;
-import projekt.messages.TextMessageHandler;
-import projekt.searchlogic.DepthFirstSearch;
-import projekt.user.CurrentUser;
+import project.hamster.Hamster;
+import project.hamster.Territory;
+import project.searchlogic.DepthFirstSearch;
+import project.user.CurrentUser;
 
 public class Client
 {
-
-	private CurrentUser user; // = new CurrentUser();
-	TextMessageHandler textMessages;
+	private CurrentUser user;
 
 	/**
 	 * Erstmaliges Anmelden und Instanz der Nutzerklasse definieren
 	 */
-	public Client() {
+	public Client()
+	{
 		signIn();
-
 	}
 
 	/**
@@ -30,18 +27,11 @@ public class Client
 		String tmpValue;
 		@SuppressWarnings("resource")
 		Scanner inSignIn = new Scanner(System.in);
-		
-		inSignIn = new Scanner(System.in);
+
 		System.out.println("Benutzernamen eingeben");
 		tmpValue = inSignIn.nextLine();
 		System.out.println("Passwort eingeben");
 		user = new CurrentUser(tmpValue, inSignIn.nextLine());
-
-		// Neu Anmelden in den MessageHandler Klassen
-		textMessages = new TextMessageHandler(user.getUserName(), user.getPassword());
-		
-		// Neue Nutzerliste für den User holen
-
 	}
 
 	/**
@@ -80,12 +70,13 @@ public class Client
 	private void startProgram() {
 		String initSave;
 		Hamster hamster = new Hamster(user);	//Hamster Objekt erstellen
+
 		initSave = hamster.init();
 		if (!initSave.contains("Error"))
 		{
-		Territory territory = new Territory(initSave); //Territorium auslesen und ermitteln, dabei den Hamster mit initialisieren auf dem Feld
-		DepthFirstSearch depthFirst = new DepthFirstSearch(hamster, territory);	//Hamsterprogramm erstellen
-		depthFirst.searchCorn(); //Programm starten
+			Territory territory = new Territory(initSave); //Territorium auslesen und ermitteln, dabei den Hamster mit initialisieren auf dem Feld
+			DepthFirstSearch depthFirst = new DepthFirstSearch(hamster, territory);	//Hamsterprogramm erstellen
+			depthFirst.searchCorn(); //Programm starten
 		}
 		else
 		{

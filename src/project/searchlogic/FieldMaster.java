@@ -1,8 +1,8 @@
-package projekt.searchlogic;
+package project.searchlogic;
 
-import projekt.hamster.Territory;
+import project.hamster.Territory;
 
-/*class*/class FieldMaster 
+class FieldMaster
 {  
     private Field[][] fields;
     

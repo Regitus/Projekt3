@@ -1,4 +1,4 @@
-package projekt.user;
+package project.user;
 
 /**
  * Anmeldedaten des Benutzers werden hier gespeichert.

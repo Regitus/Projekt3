@@ -1,4 +1,4 @@
-package projekt.messages;
+package project.messages;
 
 import de.thm.oop.chat.base.server.BasicTHMChatServer;
 

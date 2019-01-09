@@ -1,4 +1,4 @@
-package projekt.hamster;
+package project.hamster;
 
 public class Territory
 {

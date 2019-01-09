@@ -1,7 +1,7 @@
-package projekt.searchlogic;
+package project.searchlogic;
 
-import projekt.hamster.Hamster;
-import projekt.hamster.Territory;
+import project.hamster.Hamster;
+import project.hamster.Territory;
 
 /*class*/public class DepthFirstSearch
 {

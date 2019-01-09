@@ -1,7 +1,7 @@
-package projekt.hamster;
+package project.hamster;
 
-import projekt.messages.TextMessageHandler;
-import projekt.user.CurrentUser;
+import project.messages.TextMessageHandler;
+import project.user.CurrentUser;
 
 public class Hamster
 {
