@@ -53,7 +53,7 @@ import projekt.hamster.Territorium;
 			if(canDiscoverField(row, column, direction))
 			{
 				hamster.turnToDirection(direction);
-				hamster.vor();
+				hamster.move();
 				if(searchCorn(direction))
 				{
 				    // Das Korn wurde gefunden und die Rekursion wird aufgelöst, die der Hamster dann nicht mehr nachläuft,
@@ -76,7 +76,7 @@ import projekt.hamster.Territorium;
         if(directionFrom >= 0)
     	{
     		hamster.turnToDirection((directionFrom + 2) % 4);
-    		hamster.vor();
+    		hamster.move();
     	}
     }
     

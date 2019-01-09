@@ -70,43 +70,31 @@ import projekt.user.CurrentUser;
 
 		} catch (InterruptedException e)
 		{
-			return "Fehler beim warten auf Init Rückgabe!";
+			return "Error/Fehler beim warten auf Init Rückgabe!";
 		}
-		return "Es konnte nicht initialisiert werden!";
+		return "Error/Es konnte nicht initialisiert werden!";
 
 	}
 	
 	/**
 	 * Eines nach vorne bewegen
 	 */
-	public void vor()
+	public void move()
 	{
 		textMessages.send("hamster18ws", "vor");
 		switch (currentDirection)
 		{
 		case Hamster.norden:
-			if (row != 0)
-			{
 				row--;
-			}
 			break;
 		case Hamster.osten:
-			if (column < maxColumn)
-			{
 				column++;
-			}
 			break;
 		case Hamster.sueden:
-			if (row < maxRow)
-			{
 				row++;
-			}
 			break;
 		case Hamster.westen:
-			if (column != 0)
-			{
 				column--;
-			}
 			break;
 		}
 	}

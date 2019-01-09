@@ -78,9 +78,18 @@ public class Client
 	}
 
 	private void startProgram() {
+		String initSave;
 		Hamster hamster = new Hamster(user);	//Hamster Objekt erstellen
-		Territorium territorium = new Territorium(hamster.init()); //Territorium auslesen und ermitteln, dabei den Hamster mit initialisieren auf dem Feld
+		initSave = hamster.init();
+		if (!initSave.contains("Error"))
+		{
+		Territorium territorium = new Territorium(initSave); //Territorium auslesen und ermitteln, dabei den Hamster mit initialisieren auf dem Feld
 		DepthFirstSearch depthFirst = new DepthFirstSearch(hamster, territorium);	//Hamsterprogramm erstellen
 		depthFirst.searchCorn(); //Programm starten
+		}
+		else
+		{
+			System.out.println(initSave);
+		}
 	}
 }
