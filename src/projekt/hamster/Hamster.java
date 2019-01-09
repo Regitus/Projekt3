@@ -3,17 +3,16 @@ package projekt.hamster;
 import projekt.messages.TextMessageHandler;
 import projekt.user.CurrentUser;
 
-/*class*/public class Hamster
+public class Hamster
 {
-
 	private int currentDirection = 1;
-	public static final int norden = 0;
-	public static final int osten = 1;
-	public static final int sueden = 2;
-	public static final int westen = 3;
-	private int row, column, maxRow, maxColumn;
+	public static final int NORTH = 0;
+	public static final int EAST = 1;
+	public static final int SOUTH = 2;
+	public static final int WEST = 3;
+	private int row, column;
 
-	TextMessageHandler textMessages;
+	private TextMessageHandler textMessages;
 
 	/**
 	 * Objekt der klasse TextMessageHandler initialisieren
@@ -56,14 +55,16 @@ import projekt.user.CurrentUser;
 			for (int i = 0; i < 5; i++)
 			{
 				Thread.sleep(3000);
+
 				messages = textMessages.getMessages();
 				splittedMessages = messages[messages.length-1].split("\\|");
+
 				if (splittedMessages[2].equals("in")&& splittedMessages[3].equals("hamster18ws"))
 				{
-					//Variabel nachrichten missbrauchen um Feldgröße zu bekommen
-					messages = splittedMessages[5].split(" ");
-					maxRow = Integer.parseInt(messages[2]);
-					maxColumn = Integer.parseInt(messages[1]);;
+				    // Farbe anzeigen
+                    String[] colorMessage = messages[messages.length - 2].split("\\|");
+					System.out.println(colorMessage[colorMessage.length - 1]);
+
 					return splittedMessages[5];
 				}
 			}
@@ -72,8 +73,8 @@ import projekt.user.CurrentUser;
 		{
 			return "Error/Fehler beim warten auf Init Rückgabe!";
 		}
-		return "Error/Es konnte nicht initialisiert werden!";
 
+		return "Error/Es konnte nicht initialisiert werden!";
 	}
 	
 	/**
@@ -84,16 +85,16 @@ import projekt.user.CurrentUser;
 		textMessages.send("hamster18ws", "vor");
 		switch (currentDirection)
 		{
-		case Hamster.norden:
+		case Hamster.NORTH:
 				row--;
 			break;
-		case Hamster.osten:
+		case Hamster.EAST:
 				column++;
 			break;
-		case Hamster.sueden:
+		case Hamster.SOUTH:
 				row++;
 			break;
-		case Hamster.westen:
+		case Hamster.WEST:
 				column--;
 			break;
 		}
@@ -105,7 +106,6 @@ import projekt.user.CurrentUser;
 	 */
 	public int getRow()
 	{
-		// Gebe Reihe zurück
 		return row;
 	}
 	
@@ -115,7 +115,6 @@ import projekt.user.CurrentUser;
 	 */
 	public int getColumn()
 	{
-		// Gebe Spalte zurück
 		return column;
 	}
 	
@@ -134,5 +133,5 @@ import projekt.user.CurrentUser;
 	public void take()
 	{
 		textMessages.send("hamster18ws", "nimm");
-	}	
+	}
 }

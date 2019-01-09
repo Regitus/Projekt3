@@ -46,7 +46,7 @@ import projekt.hamster.Territory;
     	fieldMaster.visiting(row, column); 
     	
     	// Alle vier Richtungen werden untersucht.
-		for(int direction = Hamster.norden; direction <= Hamster.westen; direction++)
+		for(int direction = Hamster.NORTH; direction <= Hamster.WEST; direction++)
 		{
 			// Überprüft, ob der Hamster das Nachbarfeld noch nicht untersucht hat.
 			// Außerdem muss das Nachbarfeld im Territorium liegen und es darf sich keine Mauer befinden.
@@ -88,16 +88,16 @@ import projekt.hamster.Territory;
 	{
 		switch(direction)
 		{
-			case Hamster.norden:
+			case Hamster.NORTH:
 				return fieldMaster.canBeDiscovered(row - 1, column);
 	
-			case Hamster.osten:
+			case Hamster.EAST:
 				return fieldMaster.canBeDiscovered(row, column + 1);
 				
-			case Hamster.sueden:
+			case Hamster.SOUTH:
 				return fieldMaster.canBeDiscovered(row + 1, column);
 				
-			case Hamster.westen:
+			case Hamster.WEST:
 				return fieldMaster.canBeDiscovered(row, column - 1);				
 		}
 		
