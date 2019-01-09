@@ -40,7 +40,7 @@ import projekt.hamster.Territorium;
     	   	
     	if(fieldMaster.isCornInField(row, column))
     	{
-    		//hamster.pickGrain();
+    		hamster.take();
     		return true;
     	}
     	fieldMaster.visiting(row, column); 
