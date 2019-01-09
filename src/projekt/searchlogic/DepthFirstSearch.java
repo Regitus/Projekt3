@@ -1,7 +1,7 @@
 package projekt.searchlogic;
 
 import projekt.hamster.Hamster;
-import projekt.hamster.Territorium;
+import projekt.hamster.Territory;
 
 /*class*/public class DepthFirstSearch
 {
@@ -13,7 +13,7 @@ import projekt.hamster.Territorium;
 	 * @param hamster Der Hamster zum Steuern
 	 * @param territorium Das Territorium Feld der Klasse Territorium
 	 */
-    public DepthFirstSearch(Hamster hamster, Territorium territorium)
+    public DepthFirstSearch(Hamster hamster, Territory territorium)
     {
     	this.fieldMaster = new FieldMaster(territorium);
     	this.hamster = hamster;

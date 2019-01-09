@@ -3,7 +3,7 @@ package project.basis;
 import java.util.Scanner;
 
 import projekt.hamster.Hamster;
-import projekt.hamster.Territorium;
+import projekt.hamster.Territory;
 import projekt.messages.TextMessageHandler;
 import projekt.searchlogic.DepthFirstSearch;
 import projekt.user.CurrentUser;
@@ -83,8 +83,8 @@ public class Client
 		initSave = hamster.init();
 		if (!initSave.contains("Error"))
 		{
-		Territorium territorium = new Territorium(initSave); //Territorium auslesen und ermitteln, dabei den Hamster mit initialisieren auf dem Feld
-		DepthFirstSearch depthFirst = new DepthFirstSearch(hamster, territorium);	//Hamsterprogramm erstellen
+		Territory territory = new Territory(initSave); //Territorium auslesen und ermitteln, dabei den Hamster mit initialisieren auf dem Feld
+		DepthFirstSearch depthFirst = new DepthFirstSearch(hamster, territory);	//Hamsterprogramm erstellen
 		depthFirst.searchCorn(); //Programm starten
 		}
 		else

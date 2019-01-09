@@ -6,7 +6,7 @@ public class Territory
 	private String[][] field;
 	
 	/**
-	 * @param fieldString String mit der Textrï¿½ckgabe vom Hamster nach dem init Befehl
+	 * @param fieldString String mit der Textrückgabe vom Hamster nach dem init Befehl
 	 */
 	public Territory(String fieldString)
 	{
@@ -46,7 +46,7 @@ public class Territory
 	}
 	
 	/**
-	 * Prï¿½ft ob eine Mauer an der Koordinate ist. True wenn ja.
+	 * Prüft ob eine Mauer an der Koordinate ist. True wenn ja.
 	 * @param row Int Wert der Reihe
 	 * @param column Int Wert der Spalte
 	 * @return Boolean; true bei ja, false bei nein
@@ -57,7 +57,7 @@ public class Territory
 	}
 	
 	/**
-	 * Gibt die Anzahl der Kï¿½rner auf der koordinate wieder
+	 * Gibt die Anzahl der Körner auf der koordinate wieder
 	 * @param row Int Wert der Reihe
 	 * @param column Int Wert der Spalte
 	 * @return int wert mit Korn
