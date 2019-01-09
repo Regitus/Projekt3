@@ -1,6 +1,6 @@
 package projekt.searchlogic;
 
-import projekt.hamster.Territorium;
+import projekt.hamster.Territory;
 
 /*class*/class FieldMaster 
 {  
@@ -9,19 +9,16 @@ import projekt.hamster.Territorium;
     private int amountRows;
     private int amountColumns;
     
-    private Territorium territorium;
-    
     /**
      * Das zweidimensionale Feld-Array wird intern befüllt.
      */
-    public FieldMaster(Territorium territorium) 
+    public FieldMaster(Territory territory)
     {
-    	// Es wird vermieden, dass die Anfrage (Anzahl der Reihen oder Spalten) auf der Benutzeroberfläche ständig angezeigt wird. 
-    	this.territorium = territorium;
-    	amountRows = territorium.getNumberOfRows();
-    	amountColumns = territorium.getNumberOfColumns();
+    	// Es wird vermieden, dass die Anfrage (Anzahl der Reihen oder Spalten) auf der Benutzeroberfläche ständig angezeigt wird.
+    	amountRows = territory.getNumberOfRows();
+    	amountColumns = territory.getNumberOfColumns();
     		
-    	fillArray();
+    	fillArray(territory);
     }
     
     /**
@@ -65,7 +62,7 @@ import projekt.hamster.Territorium;
      * Scannt jedes Feld des Territoriums und speichert die Art als Enum ab. 
      * Felder mit einer Mauer werden direkt als schon betrachtet gespeichert.
      */
-    private void fillArray()
+    private void fillArray(Territory territory)
 	{
 		fields = new Field[amountRows][amountColumns];
 		
@@ -73,11 +70,11 @@ import projekt.hamster.Territorium;
 		{
 			for (int column = 0; column < amountColumns; column++)
 			{
-				if(territorium.checkWall(row, column))
+				if(territory.checkWall(row, column))
 				{
 					fields[row][column] = Field.DISCOVERED;
 				}
-				else if (territorium.getNumberOfCorns(row, column) > 0)
+				else if (territory.getNumberOfCorns(row, column) > 0)
 				{
 					fields[row][column] = Field.CORN;
 				}
